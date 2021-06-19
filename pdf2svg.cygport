@@ -1,0 +1,36 @@
+NAME="pdf2svg"
+VERSION=0.2.3
+RELEASE=1
+CATEGORY="Graphics"
+SUMMARY="A simple PDF to SVG converter"
+DESCRIPTION="
+A simple PDF to SVG converter using the Poppler and Cairo libraries.
+"
+HOMEPAGE="https://github.com/dawbarton/pdf2svg/"
+
+################################
+## Source from a git repository
+################################
+GIT_REPO="https://github.com/dawbarton/pdf2svg"
+declare -A GIT_DATEHASH_BY_NAME=(
+  # git log --date=iso-strict --format='%cd/%H' -1
+  [0.2.3]=2015-06-16T13:52:54+01:00/v0.2.3
+)
+REV_HASH="${GIT_DATEHASH_BY_NAME[${VERSION}]#*/}"
+REV_DATE="${GIT_DATEHASH_BY_NAME[${VERSION}]%/*}"
+REV_DATE_SHORT="${REV_DATE%%T*}"
+GIT_BASENAME="${GIT_REPO##*/}"
+SRC_URI="${GIT_REPO}/archive/${REV_HASH}/${GIT_BASENAME}-${VERSION}.tar.gz"
+SRC_DIR="${GIT_BASENAME}-${REV_HASH#v}"
+
+################################
+## Requirements for building
+################################
+BUILD_REQUIRES="\
+  pkg-config \
+  libcairo-devel \
+  libpoppler-devel \
+  libpoppler-glib-devel \
+"
+
+################################
